@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ClientesController;
+use App\Http\Controllers\CarrosController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,12 +19,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/avisos', function() {
-    return view('avisos', ['nome' => 'Melo', 'mostrar' => true, 'avisos' => [ ['id' => 1, 'texto' => 'Feriado dia 20/03'], ['id' => 2, 'texto' => 'Feriado semana que vem'] ]]);
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::group(['prefix' => 'clientes'], function(){
+    Route::get('/listar', [ClientesController::class, 'listar'])->middleware('auth');
 });
 
-Route::get('/usuario', function() {
-    return view('usuario', ['logins' => [ [ 'id' => 1, 'Email' => 'Matheus@email.com', 'Senha' => 'senha1234'],
-                                          [ 'id' => 2, 'Email' => 'José@email.com', 'Senha' => 'JoséBahiano' ],
-                                          [ 'id' => 3, 'Email' => 'Judas@email.com', 'Senha' => '123456' ] ]]);
+Route::group(['prefix' => 'carros'], function(){
+    Route::get('/listar', [CarrosController::class, 'listar'])->middleware('auth');
 });
