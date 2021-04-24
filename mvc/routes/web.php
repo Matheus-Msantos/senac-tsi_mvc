@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ClientesController;
 use App\Http\Controllers\CarrosController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\RoleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,4 +32,9 @@ Route::group(['prefix' => 'clientes'], function(){
 
 Route::group(['prefix' => 'carros'], function(){
     Route::get('/listar', [CarrosController::class, 'listar'])->middleware('auth');
+});
+
+Route::group(['middleware' => 'auth'], function () {
+    Route::resource('users', UserController::class);
+    Route::resource('roles', RoleController::class);
 });

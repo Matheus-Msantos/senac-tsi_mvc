@@ -16,15 +16,14 @@ class userController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $qtd_por_pagina = 5;
 
         $data = User::orderBy('id', 'DESC')->paginate($qtd_por_pagina);
 
         return view('users.index',
-                    compact('data'))->
-                    with('i' ($request->input('page', 1) - 1 ) + $qtd_por_pagina );
+                    compact('data'))->with('i', ($request->input('page', 1) - 1 ) + $qtd_por_pagina );
     }
 
     /**
@@ -103,7 +102,29 @@ class userController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request,[
+            'name' => 'required',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|same:confirm-password',
+            'roles' => 'required' ]);
+
+        $input = $request->all();
+
+        if( !empaty($input['password'])) {
+            $input['password'] = Hash::make($input['password']);
+        }else {
+            $input =  Arr::except($input, ['password']);
+        }
+
+        $user = User::find($id);
+
+        $user->upadte($input);
+
+        DB::table('model_has_roles')->where('model_id', $id)->delete();
+
+        $user->assignRole($request->input('rules'));
+
+        return redirect()->route('users.index')->with('success', 'Usuáeio atualizado com sucesso');
     }
 
     /**
