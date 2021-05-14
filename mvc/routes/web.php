@@ -26,9 +26,13 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+/*
 Route::group(['prefix' => 'clientes'], function(){
     Route::get('/listar', [ClientesController::class, 'listar'])->middleware('auth');
+
+
 });
+*/
 
 Route::group(['prefix' => 'carros'], function(){
     Route::get('/listar', [CarrosController::class, 'listar'])->middleware('auth');
@@ -37,4 +41,5 @@ Route::group(['prefix' => 'carros'], function(){
 Route::group(['middleware' => 'auth'], function () {
     Route::resource('users', UserController::class);
     Route::resource('roles', RoleController::class);
+    Route::resource('clientes', ClientesController::class);
 });
