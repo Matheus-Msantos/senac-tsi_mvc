@@ -1,29 +1,18 @@
-@extends('layouts.app')
-@section('content')
-    <div class="container">
+<!DOCTYPE html>
+<html>
+	<body>
+		<table border='1' bgcolor="#dedede">
+			<tr><th>Nome</th><th>Endereço</th></tr>
 
-        <h1>Listar Clientes</h1>
+			@foreach($clientes as $cliente)
 
-        <table class="table table-striped table-dark">
-            <thead>
-                <tr>
-                    <th>id</th>
-                    <th>Nome</th>
-                    <th>endereço</th>
-                </tr>
-            </thead>
+				<tr>
+					<td>{{$cliente->nome}}</td>
+					<td>{{$cliente->endereco}}</td>
+				</tr>
 
-            <tbody>
+			@endforeach
 
-                @foreach($clientes as $cliente)
-                    <tr>
-                        <td>{{ $cliente->id }}</td>
-                        <td>{{ $cliente->nome }}</td>
-                        <td>{{ $cliente->endereco }}</td>
-                    </tr>
-                @endforeach
-
-            </tbody>
-        </table>
-    </div>
-@endsection
+		</table>
+	</body>
+</html>

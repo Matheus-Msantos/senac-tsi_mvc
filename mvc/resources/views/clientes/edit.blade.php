@@ -30,13 +30,13 @@
 @endif
 
 
-{!! Form::model($user, ['method' => 'PATCH','route' => ['users.update', $user->id]]) !!}
+{!! Form::model($cliente, ['method' => 'PATCH','route' => ['clientes.update', $cliente->id]]) !!}
 
 <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
             <strong>Nome:</strong>
-            {!! Form::text('name', null, array('placeholder' => 'Name','class' => 'form-control')) !!}
+            {!! Form::text('nome', null, array('placeholder' => 'Nome','class' => 'form-control')) !!}
         </div>
     </div>
 
@@ -47,11 +47,17 @@
         </div>
     </div>
 
+    <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="form-group">
+            <strong>Data de nascimento:</strong>
+            {!! Form::date('nascimento', null, array('placeholder' => 'Data de nascimento','class' => 'form-control')) !!}
+        </div>
+    </div>
 
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
-            <strong>Perfil:</strong>
-            {!! Form::select('roles[]', $roles,$userRole, array('class' => 'form-control','multiple')) !!}
+            <strong>Endereço:</strong>
+            {!! Form::text('endereco', null, array('placeholder' => 'Endereço','class' => 'form-control')) !!}
         </div>
     </div>
 
@@ -64,4 +70,3 @@
 {!! Form::close() !!}
 
 @endsection
-

@@ -5,25 +5,27 @@
 <div class="row">
     <div class="col-lg-12 margin-tb">
         <div class="pull-left">
-            <h2> Dados do Cliente</h2>
+            <h2> Detalhes do Cliente</h2>
         </div>
-
         <div class="pull-right">
             <a class="btn btn-primary" href="{{ route('clientes.index') }}"> Voltar</a>
         </div>
     </div>
 </div>
-<br>
+<div class="row">
+    <div class="col-lg-12 margin-tb">
+        <p></p>
+    </div>
+</div>
 <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
             <strong>Nome:</strong>
 
-            {{ $cliente->name }}
+            {{ $cliente->nome }}
 
         </div>
     </div>
-
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
             <strong>Email:</strong>
@@ -32,20 +34,19 @@
 
         </div>
     </div>
-
     <div class="col-xs-12 col-sm-12 col-md-12">
         <div class="form-group">
-            <strong>Perfil:</strong>
+            <strong>Nascimento:</strong>
 
-            @if(!empty($cliente->getRoleNames()))
+            {{ $cliente->nascimento }}
 
-                @foreach($cliente->getRoleNames() as $v)
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-12 col-md-12">
+        <div class="form-group">
+            <strong>Endereço:</strong>
 
-                    <label class="badge badge-success">{{ $v }}</label>
-
-                @endforeach
-
-            @endif
+            {{ $cliente->endereco }}
 
         </div>
     </div>

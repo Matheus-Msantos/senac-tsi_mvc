@@ -5,7 +5,7 @@
 <div class="row">
     <div class="col-lg-12 margin-tb">
         <div class="pull-left">
-            <h2>Cliente</h2>
+            <h2>Clientes</h2>
         </div>
         <div class="pull-right">
             <a class="btn btn-success" href="{{ route('clientes.create') }}"> + Novo cliente</a>
@@ -39,24 +39,10 @@
 
   <tr>
     <td>{{ ++$i }}</td>
-    <td>{{ $cliente->name }}</td>
+    <td>{{ $cliente->nome }}</td>
     <td>{{ $cliente->email }}</td>
     <td>{{ $cliente->endereco }}</td>
     <td>{{ $cliente->nascimento }}</td>
-    <td>
-
-      @if(!empty($cliente->getRoleNames()))
-
-        @foreach($cliente->getRoleNames() as $v)
-
-           <label class="badge badge-success">{{ $v }}</label>
-
-        @endforeach
-
-      @endif
-
-    </td>
-
     <td>
        <a class="btn btn-info" href="{{ route('clientes.show',$cliente->id) }}">Mostrar</a>
        <a class="btn btn-primary" href="{{ route('clientes.edit',$cliente->id) }}">Editar</a>
