@@ -12,4 +12,8 @@ class Funcionario extends Model
     protected $fillable = ['id', 'nome', 'endereco', 'email', 'telefone'];
 
     protected $table = 'Funcionario';
+
+    public function vendas(){
+        return $this->hasMany(vendas::class, 'funcionario_id');
+    }
 }
